@@ -43,16 +43,16 @@ def solicita_tipos_situaciones():
         if tipo != 'a' and tipo != 'b' and tipo != 'c' and tipo != 'd':
             print("La opción ingresada es incorrecta.")
         else:
-            print("--DEBUG-- Eligió", tipo)
             tipos = tipos + devuelve_situaciones(tipo) + " - "
             eleccion = input("¿Desea ingresar otra opción? S/N: ")
             contador = contador + 1
+            print("--- [DEBUG] --- CONTADOR:", contador)
             if eleccion == 'N' or eleccion == 'n':
                 flag = False
                 
     return tipos, contador
 
-def mostrar_denuncia(anio, semestre, nro_exp, dia, mes, genero_denunciante, claustro_denunciante, genero_denunciado, claustro_denunciado, tipos_situaciones):
+def mostrar_denuncia(anio, nro_exp, dia, mes, genero_denunciante, claustro_denunciante, genero_denunciado, claustro_denunciado, tipos_situaciones):
     os.system('cls')
     print("Datos de la denuncia:")
     print("Número de expediente:", nro_exp)
@@ -62,6 +62,22 @@ def mostrar_denuncia(anio, semestre, nro_exp, dia, mes, genero_denunciante, clau
     print("Tipo/s de situación/es vivenciada/s:", tipos_situaciones)
     print("Género de la persona denunciada:", devuelve_genero(genero_denunciado))
     print("Claustro de la persona denunciada:", devuelve_claustro(claustro_denunciado))
+    input("Presione Enter para continuar.")
+
+def mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades):
+    os.system('cls')
+    print("Informe del semestre", semestre, "del año", anio)
+    print("Cantidad total de denuncias:", total_denuncias)
+    print("Porcentaje de clasificadas en más de un tipo de situación vivenciada:", porcentaje, "%")
+    print("Cantidad de denuncias entre pares del mismo claustro:", cant_pares)
+    print("Mayor número de expediente ingresado:", mayor_exp)
+    print("Cantidad de denunciantes mujeres:", cant_den_mujeres)
+    print("Cantidad de denunciantes varones:", cant_den_varones)
+    print("Cantidad de denunciantes otres:", cant_den_otres)
+    print("Cantidad de denunciantes del claustro de estudiantes:", cant_den_estudiantes)
+    print("Cantidad de denunciantes del claustro de no docentes:", cant_den_nodocentes)
+    print("Cantidad de denunciantes del claustro de docentes:", cant_den_docentes)
+    print("Cantidad de denunciantes del claustro de graduades:", cant_den_graduades)
     input("Presione Enter para continuar.")
 
 def main():
@@ -98,7 +114,7 @@ def main():
         # GENERO DENUNCIANTE
         genero_denunciante = '-'
         while genero_denunciante != 'm' and genero_denunciante != 'v' and genero_denunciante != 'x':
-            genero_denunciante = input("Ingrese el género autopercibido de la persona denunciante: (x - m - v)")
+            genero_denunciante = input("Ingrese el género autopercibido de la persona denunciante (x - m - v): ")
             if genero_denunciante != 'm' and genero_denunciante != 'v' and genero_denunciante != 'x':
                 print("El dato ingresado es incorrecto! Reingrese el género.")
         if genero_denunciante == 'm':
@@ -111,7 +127,7 @@ def main():
         #CLAUSTRO DENUNCIANTE
         claustro_denunciante = '-'
         while claustro_denunciante != 'e' and claustro_denunciante != 'n' and claustro_denunciante != 'd' and claustro_denunciante != 'd':
-            claustro_denunciante = input("Ingrese el género autopercibido de la persona denunciante: (e, n, d, g)")
+            claustro_denunciante = input("Ingrese el claustro ala que pertenece de la persona denunciante (e, n, d, g): ")
             if claustro_denunciante != 'e' and claustro_denunciante != 'n' and claustro_denunciante != 'd' and claustro_denunciante != 'd':
                 print("El dato ingresado es incorrecto! Reingrese el claustro.")
         if claustro_denunciante == 'e':
@@ -131,20 +147,29 @@ def main():
         # GENERO DENUNCIADO
         genero_denunciado = '-'
         while genero_denunciado != 'm' and genero_denunciado != 'v' and genero_denunciado != 'x':
-            genero_denunciado = input("Ingrese el género autopercibido de la persona denunciante: (x - m - v)")
+            genero_denunciado = input("Ingrese el género autopercibido de la persona denunciada (x - m - v): ")
             if genero_denunciado != 'm' and genero_denunciado != 'v' and genero_denunciado != 'x':
                 print("El dato ingresado es incorrecto! Reingrese el género.")
         
-        #CLAUSTRO DENUNCIANTE
+        #CLAUSTRO DENUNCIADO
         claustro_denunciado = '-'
         while claustro_denunciado != 'e' and claustro_denunciado != 'n' and claustro_denunciado != 'd' and claustro_denunciado != 'g':
-            claustro_denunciado = input("Ingrese el género autopercibido de la persona denunciante: (e, n, d, g)")
+            claustro_denunciado = input("Ingrese el claustro ala que pertenece de la persona denunciada (e, n, d, g): ")
             if claustro_denunciado != 'e' and claustro_denunciado != 'n' and claustro_denunciado != 'd' and claustro_denunciado != 'g':
                 print("El dato ingresado es incorrecto! Reingrese el claustro.")
   
         if claustro_denunciado == claustro_denunciante:
             cant_pares = cant_pares + 1
             
-        mostrar_denuncia(anio, semestre, expediente, dia, mes, genero_denunciante, claustro_denunciante, genero_denunciado, claustro_denunciado, tipos_situaciones)
+        mostrar_denuncia(anio, expediente, dia, mes, genero_denunciante, claustro_denunciante, genero_denunciado, claustro_denunciado, tipos_situaciones)
+        
+        continuar = input("Presione 'S' para ingresar otra denuncia, cualquier otra tecla para continuar: ")
+        # FIN BUCLE
+
+    total_denuncias = cant_den_mujeres + cant_den_varones + cant_den_otres
+    porcentaje = cant_pares * 100 * total_denuncias
+    
+    mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades)
 
 main()
+
