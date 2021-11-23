@@ -188,8 +188,6 @@ def main():
                 cant_pares = cant_pares + 1
                 
             mostrar_denuncia(anio, expediente, dia, mes, genero_denunciante, claustro_denunciante, genero_denunciado, claustro_denunciado, tipos_situaciones)
-            
-        
         # FIN BUCLE
 
     total_denuncias = cant_den_mujeres + cant_den_varones + cant_den_otres
