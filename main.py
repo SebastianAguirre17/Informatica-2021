@@ -1,9 +1,15 @@
 import os
 
 def es_bisiesto(anio):
+    """ Reciba por parámetroun número que representa un año, y devuelva un resultado 
+        booleano que indique si es o no bisiesto. 
+    """
     return anio % 4 == 0 and anio % 100 != 0 or anio % 400 == 0
 
 def cant_dias_mes(mes, anio):
+    """ Recibe por parámetro dos números que representan el mes y el año, devuelva 
+        como resultado la cantidad de días correspondientes al mes.
+    """
     if mes == 1 or mes == 3 or mes == 5 or mes == 7 or mes == 8 or mes == 10 or mes == 12:
         return 31
     elif mes == 4 or mes == 6 or mes == 9 or mes == 11:
@@ -16,9 +22,15 @@ def cant_dias_mes(mes, anio):
         return 0
     
 def valida_fecha(dia, mes, anio):
+    """ Recibe por parámetros una fecha en números (día, mes, año), 
+        devuelva un resultado booleano que indique si es válida o no.
+    """
     return cant_dias_mes(mes, anio) != 0 and dia <= cant_dias_mes(mes, anio)
 
 def devuelve_situaciones(identificador):
+    """ Dado por parámetro una letra, devuelve de forma textual el tipo de 
+        denuncia que repressenta.
+    """
     if identificador == 'a':
         return "Hechos de violencia sexual"
     elif identificador == 'b':
@@ -29,6 +41,9 @@ def devuelve_situaciones(identificador):
         return "Comportamientos y acciones de violencia"
 
 def devuelve_genero(identificador):
+    """ Dado por parámetro una letra, devuelve de forma textual 
+        el género que respresenta.
+    """
     if identificador == 'm':
         return "Mujer"
     elif identificador == 'v':
@@ -37,6 +52,9 @@ def devuelve_genero(identificador):
         return "Otre"
 
 def devuelve_claustro(identificador):
+    """ Dado por parámetro una letra, devuelve de forma textual 
+        el claustro que respresenta.
+    """
     if identificador == 'e':
         return "Estudiante"
     elif identificador == 'n':
@@ -47,7 +65,11 @@ def devuelve_claustro(identificador):
         return "Graduade"
 
 def solicita_tipos_situaciones():
+    """ Presenta que presenta por pantalla un menú con los tipos denuncias, solicita el ingreso de 
+        la/s opcion/es. Mientras no se seleccione una opción, se pedirá el reingreso. Retorna en forma textual la/s denuncia/s elegidas y la cantidad de tipos seleccionados.
+    """
     tipos = ''
+    letrasIngresadas = ''
     contador = 0
     flag = True
     print("Tipos de situaciones vivenciadas:")
@@ -58,15 +80,24 @@ def solicita_tipos_situaciones():
         if tipo != 'a' and tipo != 'b' and tipo != 'c' and tipo != 'd':
             print("La opción ingresada es incorrecta.")
         else:
-            tipos = tipos + devuelve_situaciones(tipo) + " - "
-            eleccion = input("¿Desea ingresar otra opción? S/N: ")
-            contador = contador + 1
-            if eleccion == 'N' or eleccion == 'n':
-                flag = False
-                
+            if tipo in letrasIngresadas:
+                print("La opción fue elegida con anterioridad.")
+            else: 
+                letrasIngresadas = letrasIngresadas + tipo
+                tipos = tipos + devuelve_situaciones(tipo) + " - "
+                eleccion = input("¿Desea ingresar otra opción? S/N: ")
+                contador = contador + 1
+                if eleccion == 'N' or eleccion == 'n':
+                    flag = False
+                if len(letrasIngresadas) == 4:
+                    print("Ha elegido el máximo de opciones permitidas.")
+                    flag = False
     return tipos, contador
 
 def mostrar_denuncia(anio, nro_exp, dia, mes, genero_denunciante, claustro_denunciante, genero_denunciado, claustro_denunciado, tipos_situaciones):
+    """ Recibe por parámetro datos de la denuncia y los imprime en pantalla
+        de forma descriptiva y ordenada.
+    """
     os.system('cls')
     print("Datos de la denuncia:")
     print("Número de expediente:", nro_exp)
@@ -79,6 +110,9 @@ def mostrar_denuncia(anio, nro_exp, dia, mes, genero_denunciante, claustro_denun
     input("Presione Enter para continuar.")
 
 def mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades):
+    """ Recibe por parámetro estadísticos y los imprime en pantalla
+        de forma descriptiva y ordenada.
+    """
     os.system('cls')
     print("Informe del semestre", semestre, "del año", anio)
     print("Cantidad total de denuncias:", total_denuncias)
@@ -99,7 +133,7 @@ def main():
     while anio < 2021:
         anio = int(input("Ingrese en año del informe: "))
         if anio < 2021:
-            print("El año ingresado es incorrecto!")
+            print("El año ingresado es incorrecto! Debe ser mayor a 2020")
     
     semestre = 0
     while semestre != 1 and semestre != 2:
@@ -135,7 +169,7 @@ def main():
                 dia = int(input("Ingrese el dia de la denuncia: "))
                 fecha_valida = valida_fecha(dia, mes, anio)
                 if not fecha_valida:
-                    print("Los datos ingresados son incorrectos! Reingrese día")
+                    print("El día ingresado es incorrecto! Reingrese día")
 
             # GENERO DENUNCIANTE
             genero_denunciante = '-'
@@ -191,7 +225,7 @@ def main():
         # FIN BUCLE
 
     total_denuncias = cant_den_mujeres + cant_den_varones + cant_den_otres
-    porcentaje = cant_pares * 100 * total_denuncias
+    porcentaje = cant_pares * 100 / total_denuncias
     
     mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades)
 
