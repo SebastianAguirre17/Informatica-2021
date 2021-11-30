@@ -66,7 +66,8 @@ def devuelve_claustro(identificador):
 
 def solicita_tipos_situaciones():
     """ Presenta que presenta por pantalla un menú con los tipos denuncias, solicita el ingreso de 
-        la/s opcion/es. Mientras no se seleccione una opción, se pedirá el reingreso. Retorna en forma textual la/s denuncia/s elegidas y la cantidad de tipos seleccionados.
+        la/s opcion/es. Mientras no se seleccione una opción, se pedirá el reingreso. Retorna en forma 
+        textual la/s denuncia/s elegidas y la cantidad de tipos seleccionados.
     """
     tipos = ''
     letrasIngresadas = ''
@@ -94,7 +95,8 @@ def solicita_tipos_situaciones():
                     flag = False
     return tipos, contador
 
-def mostrar_denuncia(anio, nro_exp, dia, mes, genero_denunciante, claustro_denunciante, genero_denunciado, claustro_denunciado, tipos_situaciones):
+def mostrar_denuncia(anio, nro_exp, dia, mes, genero_denunciante, claustro_denunciante, 
+                     genero_denunciado, claustro_denunciado, tipos_situaciones):
     """ Recibe por parámetro datos de la denuncia y los imprime en pantalla
         de forma descriptiva y ordenada.
     """
@@ -109,7 +111,8 @@ def mostrar_denuncia(anio, nro_exp, dia, mes, genero_denunciante, claustro_denun
     print("Claustro de la persona denunciada:", devuelve_claustro(claustro_denunciado))
     input("Presione Enter para continuar.")
 
-def mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades):
+def mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, 
+                         cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades):
     """ Recibe por parámetro estadísticos y los imprime en pantalla
         de forma descriptiva y ordenada.
     """
@@ -141,11 +144,12 @@ def main():
         if semestre != 1 and semestre != 2:
             print("El semestre ingresado es incorrecto!")
     
-    cant_den_mujeres = cant_den_varones = cant_den_otres = cant_den_estudiantes = cant_den_nodocentes = cant_den_docentes = cant_den_graduades = mayor_exp = cant_pares = acum_varios_tipos = 0
+    cant_den_mujeres = cant_den_varones = cant_den_otres = cant_den_estudiantes = cant_den_nodocentes = 0
+    cant_den_docentes = cant_den_graduades = mayor_exp = cant_pares = acum_varios_tipos = 0
     
     continuar = 'S'
     while continuar == 'S' or continuar == 's':
-        continuar = input("Presione 'S' para ingresar una denuncia, cualquier otra tecla para continuar: ")
+        continuar = input("Presione 'S' para ingresar una denuncia, cualquier otra letra para continuar: ")
         if continuar == 'S' or continuar == 's':
             # EXPEDIENTE
             expediente = int(input("Ingrese el número de expediente: "))
@@ -227,7 +231,8 @@ def main():
     total_denuncias = cant_den_mujeres + cant_den_varones + cant_den_otres
     porcentaje = cant_pares * 100 / total_denuncias
     
-    mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades)
+    mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, 
+                         cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades)
 
 main()
 
