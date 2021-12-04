@@ -1,5 +1,3 @@
-import os
-
 def es_bisiesto(anio):
     """ Reciba por parámetroun número que representa un año, y devuelva un resultado 
         booleano que indique si es o no bisiesto. 
