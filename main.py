@@ -1,12 +1,12 @@
 def es_bisiesto(anio):
-    """ Reciba por parámetroun número que representa un año, y devuelva un resultado 
+    """ Reciba por parámetro un número que representa un año, y devuelva un resultado 
         booleano que indique si es o no bisiesto. 
     """
     return anio % 4 == 0 and anio % 100 != 0 or anio % 400 == 0
 
 def cant_dias_mes(mes, anio):
     """ Recibe por parámetro dos números que representan el mes y el año, devuelva 
-        como resultado la cantidad de días correspondientes al mes.
+        como resultado la cantidad de días correspondientes al mes o cero si el mes no existe.
     """
     if mes == 1 or mes == 3 or mes == 5 or mes == 7 or mes == 8 or mes == 10 or mes == 12:
         return 31
@@ -21,9 +21,9 @@ def cant_dias_mes(mes, anio):
     
 def valida_fecha(dia, mes, anio):
     """ Recibe por parámetros una fecha en números (día, mes, año), 
-        devuelva un resultado booleano que indique si es válida o no.
+        devuelva un resultado booleano que indica si es válida o no.
     """
-    return cant_dias_mes(mes, anio) != 0 and dia <= cant_dias_mes(mes, anio)
+    return dia > 0 and cant_dias_mes(mes, anio) != 0 and dia <= cant_dias_mes(mes, anio)
 
 def devuelve_situaciones(identificador):
     """ Dado por parámetro una letra, devuelve de forma textual el tipo de 
@@ -63,7 +63,7 @@ def devuelve_claustro(identificador):
         return "Graduade"
 
 def solicita_tipos_situaciones():
-    """ Presenta que presenta por pantalla un menú con los tipos denuncias, solicita el ingreso de 
+    """ Presenta por pantalla un menú con los tipos denuncias, solicita el ingreso de 
         la/s opcion/es. Mientras no se seleccione una opción, se pedirá el reingreso. Retorna en forma 
         textual la/s denuncia/s elegidas y la cantidad de tipos seleccionados.
     """
@@ -118,7 +118,7 @@ def mostrar_denuncia(anio, nro_exp, dia, mes, genero_denunciante, claustro_denun
 
 def mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, 
                          cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades):
-    """ Recibe por parámetro estadísticos y los imprime en pantalla
+    """ Recibe por parámetro los datos estadísticos y los imprime en pantalla
         de forma descriptiva y ordenada.
     """
     print("\n---------------------------------------------------------------------")
@@ -136,9 +136,11 @@ def mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares
     print("--  Denunciantes del claustro de docentes:                 ", cant_den_docentes)
     print("--  Denunciantes del claustro de graduades:                ", cant_den_graduades)
     print("---------------------------------------------------------------------")
-    input("\nPresione Enter para continuar.")
+    input("\nPresione Enter para salir.")
 
 def main():
+    """ Función Princpipal
+    """
     print("-----------------------------------------------------")
     print("--   Programa Transversal de Políticas de Género   --")
     print("--          y Diversidad de la UNDAV               --")
@@ -248,9 +250,3 @@ def main():
     mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, 
                          cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades)
 main()
-
-
-# PRUEBA DE FUNCIONES
-# mostrar_denuncia(2021, 12345678, 2, 2, 'x', 'e', 'm', 'e', 'Hechos de violencia sexual Hechos de acoso sexual')
-# mostrar_estadisticas(2021, 1, 2, 50, 2, 12345678, 2, 4, 0, 2, 3, 6, 8)
-# solicita_tipos_situaciones()
