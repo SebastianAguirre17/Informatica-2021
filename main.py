@@ -1,5 +1,5 @@
 def es_bisiesto(anio):
-    """ Reciba por parámetro un número que representa un año, y devuelva un resultado 
+    """ Recibe por parámetro un número que representa un año, y devuelva un resultado 
         booleano que indique si es o no bisiesto. 
     """
     return anio % 4 == 0 and anio % 100 != 0 or anio % 400 == 0
@@ -20,13 +20,13 @@ def cant_dias_mes(mes, anio):
         return 0
     
 def valida_fecha(dia, mes, anio):
-    """ Recibe por parámetros una fecha en números (día, mes, año), 
-        devuelva un resultado booleano que indica si es válida o no.
+    """ Recibe por parámetros una fecha en números, devuelve
+        un resultado booleano que indica si es válida o no.
     """
     return dia > 0 and cant_dias_mes(mes, anio) != 0 and dia <= cant_dias_mes(mes, anio)
 
 def devuelve_situaciones(identificador):
-    """ Dado por parámetro una letra, devuelve de forma textual el tipo de 
+    """ Recibe por parámetro una letra, devuelve de forma textual el tipo de 
         denuncia que repressenta.
     """
     if identificador == 'a':
@@ -39,7 +39,7 @@ def devuelve_situaciones(identificador):
         return "Comportamientos y acciones de violencia"
 
 def devuelve_genero(identificador):
-    """ Dado por parámetro una letra, devuelve de forma textual 
+    """ Recibe por parámetro una letra, devuelve de forma textual 
         el género que respresenta.
     """
     if identificador == 'm':
@@ -50,7 +50,7 @@ def devuelve_genero(identificador):
         return "Otre"
 
 def devuelve_claustro(identificador):
-    """ Dado por parámetro una letra, devuelve de forma textual 
+    """ Recibe por parámetro una letra, devuelve de forma textual 
         el claustro que respresenta.
     """
     if identificador == 'e':
@@ -89,7 +89,7 @@ def solicita_tipos_situaciones():
                 tipos = tipos + devuelve_situaciones(tipo) + " - "
                 eleccion = input("\n¿Desea ingresar otra opción? S/N: ")
                 contador = contador + 1
-                if eleccion == 'N' or eleccion == 'n':
+                if eleccion != 'S' and eleccion != 's':
                     flag = False
                 if len(letrasIngresadas) == 4:
                     print("Ha elegido el máximo de opciones permitidas.")
@@ -163,33 +163,30 @@ def main():
     
     continuar = 'S'
     while continuar == 'S' or continuar == 's':
-        continuar = input("\nPresione 'S' para ingresar una denuncia o 'N' para continuar: ")
+        continuar = input("\nPresione 'S' para ingresar una denuncia u otra letra para continuar: ")
         if continuar == 'S' or continuar == 's':
-            # EXPEDIENTE
+            # Expediente
             expediente = int(input("\nIngrese número de expediente: "))
             if expediente > mayor_exp:
                 mayor_exp = expediente
             
-            # MES
-            mes_valido = False
-            while not mes_valido:
+            # Fecha
+            fecha_valida = False
+            while not fecha_valida:
                 mes = int(input("Ingrese mes de la denuncia: "))
                 if mes > 12 or mes < 1:
                     print("¡Mes incorrecto! Reintente.") 
                 elif (semestre == 1 and mes > 6) or (semestre == 2 and mes < 7):
                     print("¡El mes no pertenece al semestre! Reintente.")
                 else:
-                    mes_valido = True
-            
-            # FECHA
-            fecha_valida = False
-            while not fecha_valida:
-                dia = int(input("Ingrese dia de la denuncia: "))
-                fecha_valida = valida_fecha(dia, mes, anio)
-                if not fecha_valida:
-                    print("Fecha incorrecta! Reingrese día.")
+                    dia = int(input("Ingrese dia de la denuncia: "))
+                    fecha_valida = valida_fecha(dia, mes, anio)
+                    if not fecha_valida:
+                        print("¡Fecha incorrecta! Reingrese")
+                    else:
+                        fecha_valida = True
 
-            # GENERO DENUNCIANTE
+            # Género Denunciante
             genero_denunciante = '-'
             while genero_denunciante != 'm' and genero_denunciante != 'v' and genero_denunciante != 'x':
                 genero_denunciante = input("Ingrese el género de la persona denunciante (x - m - v): ")
@@ -202,11 +199,11 @@ def main():
             else:    
                 cant_den_otres = cant_den_otres + 1
             
-            #CLAUSTRO DENUNCIANTE
+            # Clasutro denunciante
             claustro_denunciante = '-'
-            while claustro_denunciante != 'e' and claustro_denunciante != 'n' and claustro_denunciante != 'd' and claustro_denunciante != 'd':
+            while claustro_denunciante != 'e' and claustro_denunciante != 'n' and claustro_denunciante != 'd' and claustro_denunciante != 'g':
                 claustro_denunciante = input("Ingrese el claustro de la persona denunciante (e, n, d, g): ")
-                if claustro_denunciante != 'e' and claustro_denunciante != 'n' and claustro_denunciante != 'd' and claustro_denunciante != 'd':
+                if claustro_denunciante != 'e' and claustro_denunciante != 'n' and claustro_denunciante != 'd' and claustro_denunciante != 'g':
                     print("¡El dato ingresado es incorrecto! Reingrese el claustro.")
             if claustro_denunciante == 'e':
                 cant_den_estudiantes = cant_den_estudiantes + 1  
@@ -217,19 +214,19 @@ def main():
             else:    
                 cant_den_graduades = cant_den_graduades + 1            
                     
-            # TIPOS
+            # Tipos de situaciones
             tipos_situaciones, cont_tipos = solicita_tipos_situaciones()
             if cont_tipos > 1:
                 acum_varios_tipos = acum_varios_tipos + 1
             
-            # GENERO DENUNCIADO
+            # Género denunciado
             genero_denunciado = '-'
             while genero_denunciado != 'm' and genero_denunciado != 'v' and genero_denunciado != 'x':
                 genero_denunciado = input("Ingrese el género de la persona denunciada (x - m - v): ")
                 if genero_denunciado != 'm' and genero_denunciado != 'v' and genero_denunciado != 'x':
                     print("¡El dato ingresado es incorrecto! Reingrese el género.")
             
-            #CLAUSTRO DENUNCIADO
+            # Clasutro denunciado
             claustro_denunciado = '-'
             while claustro_denunciado != 'e' and claustro_denunciado != 'n' and claustro_denunciado != 'd' and claustro_denunciado != 'g':
                 claustro_denunciado = input("Ingrese el claustro de la persona denunciada (e, n, d, g): ")
@@ -240,7 +237,7 @@ def main():
                 cant_pares = cant_pares + 1
                 
             mostrar_denuncia(anio, expediente, dia, mes, genero_denunciante, claustro_denunciante, genero_denunciado, claustro_denunciado, tipos_situaciones)
-        # FIN BUCLE
+        # Fin ciclo
 
     total_denuncias = cant_den_mujeres + cant_den_varones + cant_den_otres
     porcentaje = 0
@@ -249,4 +246,16 @@ def main():
     
     mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, 
                          cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades)
+    
 main()
+
+# Pruebas de documentación
+# help(es_bisiesto)
+# help(valida_fecha)
+# help(cant_dias_mes)
+# help(devuelve_claustro)
+# help(devuelve_genero)
+# help(devuelve_situaciones)
+# help(solicita_tipos_situaciones)
+# help(mostrar_denuncia)
+# help(mostrar_estadisticas)
