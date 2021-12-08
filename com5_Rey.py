@@ -3,13 +3,13 @@ def devuelve_situaciones(identificador):
         denuncia que repressenta.
     """
     if identificador == 'a':
-        return "Hechos de violencia sexual"
+        return "H. violencia sexual"
     elif identificador == 'b':
-        return "Hechos de acoso sexual"
+        return "H. acoso sexual"
     elif identificador == 'c':
-        return "Hechos con connotación sexista"
+        return "H. con. sexista"
     else: 
-        return "Comportamientos y acciones de violencia"
+        return "Comp/Acc. violentas"
 
 def solicita_tipos_situaciones():
     """ Presenta por pantalla un menú con los tipos denuncias, solicita el ingreso de 
