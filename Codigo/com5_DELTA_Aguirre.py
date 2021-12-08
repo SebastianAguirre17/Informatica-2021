@@ -19,7 +19,7 @@ def main():
     
     semestre = 0
     while semestre != 1 and semestre != 2:
-        semestre = int(input("Ingrese semestre del informe: "))
+        semestre = int(input("\nIngrese semestre del informe: "))
         if semestre != 1 and semestre != 2:
             print("¡Semestre incorrecto!")
     
@@ -38,7 +38,7 @@ def main():
             # Fecha
             fecha_valida = False
             while not fecha_valida:
-                mes = int(input("Ingrese mes de la denuncia: "))
+                mes = int(input("\nIngrese mes de la denuncia: "))
                 if mes > 12 or mes < 1:
                     print("¡Mes incorrecto! Reintente.") 
                 elif (semestre == 1 and mes > 6) or (semestre == 2 and mes < 7):
@@ -54,7 +54,7 @@ def main():
             # Género Denunciante
             genero_denunciante = '-'
             while genero_denunciante != 'm' and genero_denunciante != 'v' and genero_denunciante != 'x':
-                genero_denunciante = input("Ingrese el género de la persona denunciante (x - m - v): ")
+                genero_denunciante = input("\nIngrese el género de la persona denunciante (x - m - v): ")
                 if genero_denunciante != 'm' and genero_denunciante != 'v' and genero_denunciante != 'x':
                     print("¡El dato ingresado es incorrecto! Reingrese el género.")
             if genero_denunciante == 'm':
@@ -67,7 +67,7 @@ def main():
             # Clasutro denunciante
             claustro_denunciante = '-'
             while claustro_denunciante != 'e' and claustro_denunciante != 'n' and claustro_denunciante != 'd' and claustro_denunciante != 'g':
-                claustro_denunciante = input("Ingrese el claustro de la persona denunciante (e, n, d, g): ")
+                claustro_denunciante = input("\nIngrese el claustro de la persona denunciante (e, n, d, g): ")
                 if claustro_denunciante != 'e' and claustro_denunciante != 'n' and claustro_denunciante != 'd' and claustro_denunciante != 'g':
                     print("¡El dato ingresado es incorrecto! Reingrese el claustro.")
             if claustro_denunciante == 'e':
@@ -87,14 +87,14 @@ def main():
             # Género denunciado
             genero_denunciado = '-'
             while genero_denunciado != 'm' and genero_denunciado != 'v' and genero_denunciado != 'x':
-                genero_denunciado = input("Ingrese el género de la persona denunciada (x - m - v): ")
+                genero_denunciado = input("\nIngrese el género de la persona denunciada (x - m - v): ")
                 if genero_denunciado != 'm' and genero_denunciado != 'v' and genero_denunciado != 'x':
                     print("¡El dato ingresado es incorrecto! Reingrese el género.")
             
             # Clasutro denunciado
             claustro_denunciado = '-'
             while claustro_denunciado != 'e' and claustro_denunciado != 'n' and claustro_denunciado != 'd' and claustro_denunciado != 'g':
-                claustro_denunciado = input("Ingrese el claustro de la persona denunciada (e, n, d, g): ")
+                claustro_denunciado = input("\nIngrese el claustro de la persona denunciada (e, n, d, g): ")
                 if claustro_denunciado != 'e' and claustro_denunciado != 'n' and claustro_denunciado != 'd' and claustro_denunciado != 'g':
                     print("¡El dato ingresado es incorrecto! Reingrese el claustro.")
     

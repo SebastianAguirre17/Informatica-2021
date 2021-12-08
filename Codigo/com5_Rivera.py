@@ -27,7 +27,7 @@ def mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares
         de forma descriptiva y ordenada.
     """
     print("\n--------------------------------------------------------")
-    print("--   Informe del semestre", semestre, "del año", anio)
+    print("--  Informe del semestre", semestre, "del año", anio)
     print("--------------------------------------------------------")
     print("--  Total de denuncias:                      ", total_denuncias)
     print("--  Denunciantes mujeres:                    ", cant_den_mujeres)
