@@ -1,4 +1,3 @@
-
 def devuelve_situaciones(identificador):
     """ Recibe por parámetro una letra, devuelve de forma textual el tipo de 
         denuncia que repressenta.

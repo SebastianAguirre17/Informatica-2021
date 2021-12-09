@@ -6,10 +6,10 @@ from com5_Rivera import mostrar_estadisticas
 def main():
     """ Función Princpipal
     """
-    print("-----------------------------------------------------")
-    print("--   Programa Transversal de Políticas de Género   --")
-    print("--          y Diversidad de la UNDAV               --")
-    print("-----------------------------------------------------")
+    print("-----------------------------------")
+    print("--   Trabajo Práctigo Grupal     --")
+    print("--         Grupo DELTA           --")
+    print("-----------------------------------")
     
     anio = 0
     while anio < 2021:

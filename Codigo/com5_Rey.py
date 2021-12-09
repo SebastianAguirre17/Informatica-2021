@@ -1,6 +1,6 @@
 def devuelve_situaciones(identificador):
     """ Recibe por parámetro una letra, devuelve de forma textual el tipo de 
-        denuncia que repressenta.
+        denuncia que representa.
     """
     if identificador == 'a':
         return "H. violencia sexual"
@@ -32,15 +32,15 @@ def solicita_tipos_situaciones():
             print("¡La opción ingresada es incorrecta!")
         else:
             if tipo in letrasIngresadas:
-                print("La opción fue elegida con anterioridad.")
+                print("¡La opción fue elegida con anterioridad!")
             else: 
                 letrasIngresadas = letrasIngresadas + tipo
                 tipos = tipos + devuelve_situaciones(tipo) + " - "
-                eleccion = input("\n¿Desea ingresar otra opción? S/N: ")
+                eleccion = input("¿Desea ingresar otra opción? S/N: ")
                 contador = contador + 1
                 if eleccion != 'S' and eleccion != 's':
                     flag = False
                 if len(letrasIngresadas) == 4:
-                    print("Ha elegido el máximo de opciones permitidas.")
+                    print("¡Ha elegido el máximo de opciones permitidas!")
                     flag = False
     return tipos, contador
