@@ -4,8 +4,8 @@ from com5_Rivera import mostrar_denuncia
 from com5_Rivera import mostrar_estadisticas
 
 def main():
-    """ Función Princpipal
-    """
+    """ Función Princpipal """
+    
     print("-----------------------------------")
     print("--   Trabajo Práctigo Grupal     --")
     print("--         Grupo DELTA           --")
@@ -30,12 +30,10 @@ def main():
     while continuar == 'S' or continuar == 's':
         continuar = input("\nPresione 'S' para ingresar una denuncia u otra letra para continuar: ")
         if continuar == 'S' or continuar == 's':
-            # Expediente
             expediente = int(input("\nIngrese número de expediente: "))
             if expediente > mayor_exp:
                 mayor_exp = expediente
             
-            # Fecha
             fecha_valida = False
             while not fecha_valida:
                 mes = int(input("\nIngrese mes de la denuncia: "))
@@ -51,7 +49,6 @@ def main():
                     else:
                         fecha_valida = True
 
-            # Género Denunciante
             genero_denunciante = '-'
             while genero_denunciante != 'm' and genero_denunciante != 'v' and genero_denunciante != 'x':
                 genero_denunciante = input("\nIngrese el género de la persona denunciante (x - m - v): ")
@@ -64,7 +61,6 @@ def main():
             else:    
                 cant_den_otres = cant_den_otres + 1
             
-            # Clasutro denunciante
             claustro_denunciante = '-'
             while claustro_denunciante != 'e' and claustro_denunciante != 'n' and claustro_denunciante != 'd' and claustro_denunciante != 'g':
                 claustro_denunciante = input("\nIngrese el claustro de la persona denunciante (e, n, d, g): ")
@@ -78,20 +74,17 @@ def main():
                 cant_den_docentes = cant_den_docentes + 1  
             else:    
                 cant_den_graduades = cant_den_graduades + 1            
-                    
-            # Tipos de situaciones
+                
             tipos_situaciones, cont_tipos = solicita_tipos_situaciones()
             if cont_tipos > 1:
                 acum_varios_tipos = acum_varios_tipos + 1
             
-            # Género denunciado
             genero_denunciado = '-'
             while genero_denunciado != 'm' and genero_denunciado != 'v' and genero_denunciado != 'x':
                 genero_denunciado = input("\nIngrese el género de la persona denunciada (x - m - v): ")
                 if genero_denunciado != 'm' and genero_denunciado != 'v' and genero_denunciado != 'x':
                     print("¡El dato ingresado es incorrecto! Reingrese el género.")
             
-            # Clasutro denunciado
             claustro_denunciado = '-'
             while claustro_denunciado != 'e' and claustro_denunciado != 'n' and claustro_denunciado != 'd' and claustro_denunciado != 'g':
                 claustro_denunciado = input("\nIngrese el claustro de la persona denunciada (e, n, d, g): ")
@@ -102,7 +95,6 @@ def main():
                 cant_pares = cant_pares + 1
                 
             mostrar_denuncia(anio, expediente, dia, mes, genero_denunciante, claustro_denunciante, genero_denunciado, claustro_denunciado, tipos_situaciones)
-        # Fin ciclo
 
     total_denuncias = cant_den_mujeres + cant_den_varones + cant_den_otres
     porcentaje = 0
@@ -111,5 +103,5 @@ def main():
     
     mostrar_estadisticas(anio, semestre, total_denuncias, porcentaje, cant_pares, mayor_exp, cant_den_mujeres, cant_den_varones, 
                          cant_den_otres, cant_den_docentes, cant_den_nodocentes, cant_den_estudiantes, cant_den_graduades)
-    
+
 main()
