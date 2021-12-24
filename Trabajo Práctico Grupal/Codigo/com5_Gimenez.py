@@ -1,16 +1,3 @@
-def devuelve_situaciones(identificador):
-    """ Recibe por parámetro una letra, devuelve de forma textual el tipo de 
-        denuncia que repressenta.
-    """
-    if identificador == 'a':
-        return "Hechos de violencia sexual"
-    elif identificador == 'b':
-        return "Hechos de acoso sexual"
-    elif identificador == 'c':
-        return "Hechos con connotación sexista"
-    else: 
-        return "Comportamientos y acciones de violencia"
-
 def devuelve_genero(identificador):
     """ Recibe por parámetro una letra, devuelve de forma textual 
         el género que respresenta.
